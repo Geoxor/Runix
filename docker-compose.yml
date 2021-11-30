@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  runner:
+    build: .
+    environment:
+      - ORGANIZATION=<org>
+      - ACCESS_TOKEN=<token>
