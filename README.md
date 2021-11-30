@@ -23,7 +23,7 @@ It tries to emitate a very lite version of what the GitHub official runners have
 
 # 🗃 Setup
 
-Install [Docker](https://www.docker.com/products/docker-desktop);
+Install [Docker](https://www.docker.com/products/docker-desktop)
 
 Edit your `docker-compose.yml` and add your organization & access token
 _make sure your access token has the correct permissions_
