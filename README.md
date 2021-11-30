@@ -10,6 +10,11 @@ by editing the `Dockerfile` to install everything your repo needs
 
 # 🛠 Installed Tools
 
+- gcc-i386
+- gcc-mips
+- gcc-mipsel
+- gcc-aarch64
+
 - build-essential
 - curl
 - wget
