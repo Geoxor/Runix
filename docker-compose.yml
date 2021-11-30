@@ -2,7 +2,6 @@ version: "3"
 
 services:
   runner:
-    container_name: runix
     build: .
     environment:
       - ACCESS_TOKEN=<>
