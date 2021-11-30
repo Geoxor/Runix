@@ -1,10 +1,10 @@
 # 🎃 Introduction
 
-This is my docker image for my self-hosted GitHub Action runners
+This is my docker image for my self-hosted [GitHub Actions](https://github.com/features/actions) runners
 as self-hosted runners tend to be a lot faster since you can dedicate a server or multiple for an organization
 as supposed to how github runs multiple dockers on the same machine making compile times take really long
 
-It tries to emitate a very lite version of what the GitHub official runners have and you can farther take 
+It tries to emitate a very lite version of what the [GitHub Official Runners](https://github.com/actions/runner) have and you can farther take 
 this and build your own purpose built runner for your repo to improve performance
 by editing the `Dockerfile` to install everything your repo needs
 
