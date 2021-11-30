@@ -4,5 +4,10 @@ services:
   runner:
     build: .
     environment:
-      - ORGANIZATION=xornet-cloud
+      # your access token
       - ACCESS_TOKEN=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
+      # if org use this
+      - ORGANIZATION=xornet-cloud
+      # if solo repo use this
+      - OWNER=
+      - REPO=
