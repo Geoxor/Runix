@@ -4,5 +4,5 @@ services:
   runner:
     build: .
     environment:
-      - ORGANIZATION=<org>
-      - ACCESS_TOKEN=<token>
+      - ORGANIZATION=xornet-cloud
+      - ACCESS_TOKEN=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

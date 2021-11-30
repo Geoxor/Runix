@@ -37,31 +37,18 @@ RUN cd /home/docker && mkdir actions-runner && cd actions-runner \
 # ⚡ install some additional dependencies that github runners need
 RUN sudo /home/docker/actions-runner/bin/installdependencies.sh
 
-# 🔨 copy over the start.sh script
-COPY start.sh start.sh
-
-# 🔨 make the script executable
-RUN sudo chmod +x start.sh
-
-# 🔨 clear shit
-RUN sudo apt autoremove -y
-
 RUN sudo npm i typescript -g
 RUN sudo npm i ts-node -g
 
-
 # Install Rust Stuff
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
-
-# Update PATH so cargo works
 ENV PATH="/home/docker/.cargo/bin:${PATH}"
-
-# Install Tauri CLI
 RUN cargo --version
 
 # 🔨 since the config and run script for actions are not allowed to be run by root,
 # 🔨 set the user to "docker" so all subsequent commands are run as the docker user
 USER docker
 
-# 🔨 set the entrypoint to the start.sh script
+COPY start.sh start.sh
+RUN sudo chmod +x start.sh
 ENTRYPOINT ["./start.sh"]
