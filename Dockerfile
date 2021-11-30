@@ -29,10 +29,10 @@ RUN cd /home/docker && mkdir actions-runner && cd actions-runner \
     && tar xzf ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
 
 # install linters needed for different architectures for auritia
-# run sudo apt install gcc-multilib -y
-# run sudo apt install gcc-mips-linux-gnu -y
-# run sudo apt install gcc-mipsel-linux-gnu -y
-# run sudo apt install gcc-aarch64-linux-gnu -y
+RUN sudo apt install gcc-multilib -y
+RUN sudo apt install gcc-mips-linux-gnu -y
+RUN sudo apt install gcc-mipsel-linux-gnu -y
+RUN sudo apt install gcc-aarch64-linux-gnu -y
 
 # ⚡ install some additional dependencies that github runners need
 RUN sudo /home/docker/actions-runner/bin/installdependencies.sh
