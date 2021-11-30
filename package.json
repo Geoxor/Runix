@@ -1,0 +1,20 @@
+{
+  "name": "runix",
+  "version": "1.0.0",
+  "main": "Dockerfile",
+  "scripts": {
+    "build": "docker-compose build",
+    "start": "docker-compose up --scale runner=8 -d",
+    "stop": "docker-compose down"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Geoxor/runix.git"
+  },
+  "author": "Geoxor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Geoxor/runix/issues"
+  },
+  "homepage": "https://github.com/Geoxor/runix#readme"
+}
