@@ -19,14 +19,11 @@ USER docker
 
 # ⚡ install python and the packages the your code depends on along with jq so we can parse json
 # ⚡ add additional packages as necessary
-RUN DEBIAN_FRONTEND=noninteractive sudo apt install -y --no-install-recommends \
-    build-essential curl wget sudo curl jq python3 python3-venv python3-dev python3-pip
+RUN DEBIAN_FRONTEND=noninteractive sudo apt install -y --no-install-recommends build-essential curl wget sudo curl jq python3 python3-venv python3-dev python3-pip
 
 # ⚡ install github runner pacakge, cd into the user directory and
 # ⚡ download and unzip the github actions runner
-RUN cd /home/docker && mkdir actions-runner && cd actions-runner \
-    && curl -O -L https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
-    && tar xzf ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
+RUN cd /home/docker && mkdir actions-runner && cd actions-runner && curl -O -L https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz && tar xzf ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
 
 # install linters needed for different architectures for auritia
 RUN sudo apt install gcc-multilib -y
