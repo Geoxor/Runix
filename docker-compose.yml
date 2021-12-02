@@ -4,5 +4,6 @@ services:
   runner:
     build: .
     environment:
+      - HOSTNAME=$HOSTNAME
       - ACCESS_TOKEN=<>
       - ORGANIZATION=<>
