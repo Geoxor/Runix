@@ -13,7 +13,7 @@ echo $(ls -a)
 
 cd /home/docker/actions-runner
 
-./config.sh --url https://github.com/${ORGANIZATION} --token ${REG_TOKEN}
+./config.sh --url https://github.com/${ORGANIZATION} --token ${REG_TOKEN} --labels $HOSTNAME
 
 cleanup() {
     echo "Removing runner..."
