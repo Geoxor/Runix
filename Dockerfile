@@ -37,10 +37,14 @@ RUN sudo /home/docker/actions-runner/bin/installdependencies.sh
 RUN sudo npm i typescript -g
 RUN sudo npm i ts-node -g
 
+
 # Install Rust Stuff
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 ENV PATH="/home/docker/.cargo/bin:${PATH}"
 RUN cargo --version
+
+RUN sudo wget https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz && sudo tar -xvf upx-3.96-amd64_linux.tar.xz && cd upx-3.96-amd64_linux && sudo mv * /usr/local/bin
+RUN upx --help
 
 # 🔨 since the config and run script for actions are not allowed to be run by root,
 # 🔨 set the user to "docker" so all subsequent commands are run as the docker user
