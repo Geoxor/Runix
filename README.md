@@ -14,7 +14,7 @@ by editing the `Dockerfile` installing everything your repo needs
 - gcc-mips
 - gcc-mipsel
 - gcc-aarch64
-- [upx](https://github.com/upx/upx)
+- [upx 3.96](https://github.com/upx/upx)
 - build-essential
 - curl
 - wget
