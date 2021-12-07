@@ -43,6 +43,12 @@ RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 ENV PATH="/home/docker/.cargo/bin:${PATH}"
 RUN cargo --version
 
+# Install Go stuff
+RUN sudo wget https://go.dev/dl/go1.17.4.linux-amd64.tar.gz && sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.17.4.linux-amd64.tar.gz
+ENV PATH="/usr/local/go/bin:${PATH}"
+RUN go version
+RUN go get github.com/mitchellh/gox
+
 RUN sudo wget https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz && sudo tar -xvf upx-3.96-amd64_linux.tar.xz && cd upx-3.96-amd64_linux && sudo mv * /usr/local/bin
 RUN upx --help
 

@@ -18,6 +18,8 @@ by editing the `Dockerfile` installing everything your repo needs
 - build-essential
 - curl
 - wget
+- [go](https://go.dev)
+- [gox](https://github.com/mitchellh/gox)
 - sudo
 - curl
 - jq
