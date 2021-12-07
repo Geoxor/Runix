@@ -34,11 +34,11 @@ RUN sudo apt install gcc-aarch64-linux-gnu -y
 # ⚡ install some additional dependencies that github runners need
 RUN sudo /home/docker/actions-runner/bin/installdependencies.sh
 
+# Install Node stuff
 RUN sudo npm i typescript -g
 RUN sudo npm i ts-node -g
 
-
-# Install Rust Stuff
+# Install Rust stuff
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 ENV PATH="/home/docker/.cargo/bin:${PATH}"
 RUN cargo --version
@@ -48,6 +48,8 @@ RUN sudo wget https://go.dev/dl/go1.17.4.linux-amd64.tar.gz && sudo rm -rf /usr/
 ENV PATH="/usr/local/go/bin:${PATH}"
 RUN go version
 RUN go get github.com/mitchellh/gox
+ENV PATH="/home/docker/go/bin:${PATH}"
+RUN gox -h
 
 RUN sudo wget https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz && sudo tar -xvf upx-3.96-amd64_linux.tar.xz && cd upx-3.96-amd64_linux && sudo mv * /usr/local/bin
 RUN upx --help
