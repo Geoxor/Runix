@@ -31,6 +31,8 @@ RUN sudo apt install gcc-mips-linux-gnu -y
 RUN sudo apt install gcc-mipsel-linux-gnu -y
 RUN sudo apt install gcc-aarch64-linux-gnu -y
 
+RUN sudo apt install -y libssl-dev
+
 # ⚡ install some additional dependencies that github runners need
 RUN sudo /home/docker/actions-runner/bin/installdependencies.sh
 
