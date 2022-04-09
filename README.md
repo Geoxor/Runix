@@ -29,6 +29,7 @@ by editing the `Dockerfile` installing everything your repo needs
 - rust
 - cargo
 - npm
+- docker
 - typescript
 - ts-node
 
