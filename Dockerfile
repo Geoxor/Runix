@@ -7,27 +7,15 @@ ARG RUNNER_VERSION="2.289.2"
 # ⚡ update the base packages 
 RUN apt update -y && apt upgrade -y
 
-RUN apt install \
-  ca-certificates \
-  curl \
-  gnupg \
-  lsb-release -y
+# 🔨 add the user user
+RUN useradd -m user
 
-RUN curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-
-RUN echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
-  $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-RUN apt update -y
-
-RUN apt install docker-ce docker-ce-cli containerd.io -y
-
-# ⚡ install sudo for docker 
+# ⚡ install sudo for user 
 RUN DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends sudo
 
 # 🔨 move over the sudoers.txt file allowing sudo to be executed at runtime
 ADD /sudoers.txt /etc/sudoers
+USER user
 
 # ⚡ install python and the packages the your code depends on along with jq so we can parse json
 # ⚡ add additional packages as necessary
@@ -35,7 +23,7 @@ RUN DEBIAN_FRONTEND=noninteractive sudo apt install -y --no-install-recommends b
 
 # ⚡ install github runner pacakge, cd into the user directory and
 # ⚡ download and unzip the github actions runner
-RUN cd /home/docker && mkdir actions-runner && cd actions-runner && curl -O -L https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz && tar xzf ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
+RUN cd /home/user && mkdir actions-runner && cd actions-runner && curl -O -L https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz && tar xzf ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
 
 # install linters needed for different architectures for auritia
 RUN sudo apt install gcc-multilib -y
@@ -45,8 +33,20 @@ RUN sudo apt install gcc-aarch64-linux-gnu -y
 
 RUN sudo apt install pkg-config libssl-dev
 
+RUN apt install \
+  ca-certificates \
+  curl \
+  gnupg \
+  lsb-release -y
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+RUN echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
+  $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+RUN apt update -y
+RUN apt install docker-ce docker-ce-cli containerd.io -y
+
 # ⚡ install some additional dependencies that github runners need
-RUN sudo /home/docker/actions-runner/bin/installdependencies.sh
+RUN sudo /home/user/actions-runner/bin/installdependencies.sh
 
 # Install Node stuff
 RUN sudo npm i typescript -g
@@ -54,7 +54,7 @@ RUN sudo npm i ts-node -g
 
 # Install Rust stuff
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
-ENV PATH="/home/docker/.cargo/bin:${PATH}"
+ENV PATH="/home/user/.cargo/bin:${PATH}"
 RUN cargo --version
 
 # Install Go stuff
@@ -62,15 +62,15 @@ RUN sudo wget https://go.dev/dl/go1.17.4.linux-amd64.tar.gz && sudo rm -rf /usr/
 ENV PATH="/usr/local/go/bin:${PATH}"
 RUN go version
 RUN go get github.com/mitchellh/gox
-ENV PATH="/home/docker/go/bin:${PATH}"
+ENV PATH="/home/user/go/bin:${PATH}"
 RUN gox -h
 
 RUN sudo wget https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz && sudo tar -xvf upx-3.96-amd64_linux.tar.xz && cd upx-3.96-amd64_linux && sudo mv * /usr/local/bin && sudo rm -f upx-3.96-amd64_linux.tar.xz
 RUN upx --help
 
 # 🔨 since the config and run script for actions are not allowed to be run by root,
-# 🔨 set the user to "docker" so all subsequent commands are run as the docker user
-USER docker
+# 🔨 set the user to "user" so all subsequent commands are run as the user user
+USER user
 
 COPY start.sh start.sh
 RUN sudo chmod +x start.sh
