@@ -83,8 +83,6 @@ RUN ts-node --version
 RUN cross --version
 
 # Check Docker
-RUN sudo service docker start
-RUN sudo service docker status
 RUN sudo dockerd
 
 COPY start.sh start.sh
