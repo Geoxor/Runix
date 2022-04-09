@@ -82,16 +82,6 @@ RUN tsc --version
 RUN ts-node --version
 RUN cross --version
 
-USER docker
-RUN cargo --version
-RUN go version
-RUN gox -h
-RUN upx --help
-RUN docker --version
-RUN tsc --version
-RUN ts-node --version
-RUN cross --version
-
 RUN docker pull rustembedded/cross:aarch64-unknown-linux-musl
 RUN docker pull rustembedded/cross:arm-unknown-linux-gnueabi
 RUN docker pull rustembedded/cross:arm-unknown-linux-gnueabihf
