@@ -82,7 +82,6 @@ RUN cross --version
 
 RUN sudo systemctl enable docker
 
-RUN sudo groupadd docker
 RUN usermod -aG docker ${USER}
 
 COPY start.sh start.sh
