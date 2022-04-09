@@ -32,6 +32,7 @@ by editing the `Dockerfile` installing everything your repo needs
 - docker
 - typescript
 - ts-node
+- cross
 
 # 🗃 Setup
 
