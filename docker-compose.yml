@@ -1,9 +1,11 @@
 version: "3"
 
 services:
-  runner:
+  xornet-runner:
     build: .
+    scale: 8
     environment:
-      - HOSTNAME=$HOSTNAME
-      - ACCESS_TOKEN=<>
-      - ORGANIZATION=<>
+      - TZ=Europe/Athens
+      - ACCESS_TOKEN=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
+      - ORGANIZATION=xornet-cloud
+    restart: unless-stopped

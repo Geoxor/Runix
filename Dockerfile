@@ -2,7 +2,7 @@
 FROM node:17
 
 # 🔨 set the github runner version
-ARG RUNNER_VERSION="2.285.1"
+ARG RUNNER_VERSION="2.289.2"
 
 # ⚡ update the base packages 
 RUN apt update -y && apt upgrade -y
@@ -46,14 +46,14 @@ ENV PATH="/home/docker/.cargo/bin:${PATH}"
 RUN cargo --version
 
 # Install Go stuff
-RUN sudo wget https://go.dev/dl/go1.17.4.linux-amd64.tar.gz && sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.17.4.linux-amd64.tar.gz
+RUN sudo wget https://go.dev/dl/go1.17.4.linux-amd64.tar.gz && sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.17.4.linux-amd64.tar.gz && sudo rm -f go1.17.4.linux-amd64.tar.gz
 ENV PATH="/usr/local/go/bin:${PATH}"
 RUN go version
 RUN go get github.com/mitchellh/gox
 ENV PATH="/home/docker/go/bin:${PATH}"
 RUN gox -h
 
-RUN sudo wget https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz && sudo tar -xvf upx-3.96-amd64_linux.tar.xz && cd upx-3.96-amd64_linux && sudo mv * /usr/local/bin
+RUN sudo wget https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz && sudo tar -xvf upx-3.96-amd64_linux.tar.xz && cd upx-3.96-amd64_linux && sudo mv * /usr/local/bin && sudo rm -f upx-3.96-amd64_linux.tar.xz
 RUN upx --help
 
 # 🔨 since the config and run script for actions are not allowed to be run by root,
