@@ -82,9 +82,6 @@ RUN tsc --version
 RUN ts-node --version
 RUN cross --version
 
-# Check Docker
-RUN sudo dockerd
-
 COPY start.sh start.sh
 RUN sudo chmod +x start.sh
 ENTRYPOINT ["./start.sh"]
