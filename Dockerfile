@@ -68,7 +68,9 @@ RUN cargo install cross
 
 # 🔨 since the config and run script for actions are not allowed to be run by root,
 # 🔨 set the user to "runix" so all subsequent commands are run as the runix user
+
 USER runix
+RUN sudo usermod -aG docker runix
 
 # Check bins
 RUN cargo --version
@@ -80,10 +82,13 @@ RUN tsc --version
 RUN ts-node --version
 RUN cross --version
 
+# Check Docker
 RUN sudo systemctl enable docker
-
-RUN sudo usermod -aG docker runix
+RUN sudo systemctl start docker
+RUN sudo systemctl status docker
+RUN sudo dockerd
 
 COPY start.sh start.sh
 RUN sudo chmod +x start.sh
 ENTRYPOINT ["./start.sh"]
+
