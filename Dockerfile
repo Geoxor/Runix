@@ -83,7 +83,9 @@ RUN ts-node --version
 RUN cross --version
 
 # Check Docker
-RUN sudo dockerd
+USER root
+RUN dockerd
+USER runix
 
 COPY start.sh start.sh
 RUN sudo chmod +x start.sh
