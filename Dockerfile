@@ -55,22 +55,27 @@ RUN sudo npm i ts-node -g
 # Install Rust stuff
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 ENV PATH="/home/runix/.cargo/bin:${PATH}"
-RUN cargo --version
 
 # Install Go stuff
 RUN sudo wget https://go.dev/dl/go1.17.4.linux-amd64.tar.gz && sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.17.4.linux-amd64.tar.gz && sudo rm -f go1.17.4.linux-amd64.tar.gz
 ENV PATH="/usr/local/go/bin:${PATH}"
-RUN go version
 RUN go get github.com/mitchellh/gox
 ENV PATH="/home/runix/go/bin:${PATH}"
-RUN gox -h
 
 RUN sudo wget https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz && sudo tar -xvf upx-3.96-amd64_linux.tar.xz && cd upx-3.96-amd64_linux && sudo mv * /usr/local/bin && sudo rm -f upx-3.96-amd64_linux.tar.xz
-RUN upx --help
 
 # 🔨 since the config and run script for actions are not allowed to be run by root,
 # 🔨 set the user to "runix" so all subsequent commands are run as the runix user
 USER runix
+
+# Check bins
+RUN cargo --version
+RUN go version
+RUN gox -h
+RUN upx --help
+RUN docker --version
+RUN tsc --version
+RUN ts-node --version
 
 COPY start.sh start.sh
 RUN sudo chmod +x start.sh
