@@ -82,6 +82,9 @@ RUN tsc --version
 RUN ts-node --version
 RUN cross --version
 
+RUN sudo dockerd
+RUN sudo service docker start
+
 RUN docker pull rustembedded/cross:aarch64-unknown-linux-musl
 RUN docker pull rustembedded/cross:arm-unknown-linux-gnueabi
 RUN docker pull rustembedded/cross:arm-unknown-linux-gnueabihf
