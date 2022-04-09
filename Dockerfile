@@ -82,33 +82,6 @@ RUN tsc --version
 RUN ts-node --version
 RUN cross --version
 
-RUN sudo dockerd
-RUN sudo service docker start
-
-RUN docker pull rustembedded/cross:aarch64-unknown-linux-musl
-RUN docker pull rustembedded/cross:arm-unknown-linux-gnueabi
-RUN docker pull rustembedded/cross:arm-unknown-linux-gnueabihf
-RUN docker pull rustembedded/cross:arm-unknown-linux-musleabi
-RUN docker pull rustembedded/cross:arm-unknown-linux-musleabihf
-RUN docker pull rustembedded/cross:armv7-unknown-linux-gnueabihf
-RUN docker pull rustembedded/cross:armv7-unknown-linux-musleabihf
-RUN docker pull rustembedded/cross:i586-unknown-linux-gnu
-RUN docker pull rustembedded/cross:i586-unknown-linux-musl
-RUN docker pull rustembedded/cross:i686-unknown-linux-gnu
-RUN docker pull rustembedded/cross:i686-unknown-linux-musl
-RUN docker pull rustembedded/cross:mips-unknown-linux-gnu
-RUN docker pull rustembedded/cross:mips-unknown-linux-musl
-RUN docker pull rustembedded/cross:mips64-unknown-linux-gnuabi64
-RUN docker pull rustembedded/cross:mips64el-unknown-linux-gnuabi64
-RUN docker pull rustembedded/cross:mipsel-unknown-linux-gnu
-RUN docker pull rustembedded/cross:mipsel-unknown-linux-musl
-RUN docker pull rustembedded/cross:powerpc-unknown-linux-gnu
-RUN docker pull rustembedded/cross:powerpc64le-unknown-linux-gnu
-RUN docker pull rustembedded/cross:riscv64gc-unknown-linux-gnu
-RUN docker pull rustembedded/cross:s390x-unknown-linux-gnu
-RUN docker pull rustembedded/cross:x86_64-unknown-linux-gnu
-RUN docker pull rustembedded/cross:x86_64-unknown-linux-musl
-
 COPY start.sh start.sh
 RUN sudo chmod +x start.sh
 ENTRYPOINT ["./start.sh"]
