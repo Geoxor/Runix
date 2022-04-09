@@ -91,5 +91,3 @@ RUN sudo dockerd
 COPY start.sh start.sh
 RUN sudo chmod +x start.sh
 ENTRYPOINT ["./start.sh"]
-
-docker-compose down && cd ./github/runix &&  git pull && docker-compose build && docker tag runix_xornet-runner:latest geoxor/runix:latest && docker push geoxor/runix:latest && cd ../../ && docker-compose up -d
