@@ -23,15 +23,11 @@ RUN apt update -y
 
 RUN apt install docker-ce docker-ce-cli containerd.io -y
 
-# 🔨 add the docker user
-RUN useradd -m docker
-
 # ⚡ install sudo for docker 
 RUN DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends sudo
 
 # 🔨 move over the sudoers.txt file allowing sudo to be executed at runtime
 ADD /sudoers.txt /etc/sudoers
-USER docker
 
 # ⚡ install python and the packages the your code depends on along with jq so we can parse json
 # ⚡ add additional packages as necessary
