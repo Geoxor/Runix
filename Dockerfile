@@ -80,6 +80,8 @@ RUN tsc --version
 RUN ts-node --version
 RUN cross --version
 
+RUN sudo systemctl enable docker
+
 COPY start.sh start.sh
 RUN sudo chmod +x start.sh
 ENTRYPOINT ["./start.sh"]

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo dockerd
+
 ACCESS_TOKEN=$ACCESS_TOKEN
 ORGANIZATION=$ORGANIZATION
 
