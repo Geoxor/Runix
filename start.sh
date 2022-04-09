@@ -1,6 +1,7 @@
 #!/bin/bash
 
 sudo dockerd
+sudo systemctl start docker
 
 ACCESS_TOKEN=$ACCESS_TOKEN
 ORGANIZATION=$ORGANIZATION
