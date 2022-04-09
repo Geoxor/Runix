@@ -11,7 +11,7 @@ REG_TOKEN=$(curl -sX POST -H "Authorization: token ${ACCESS_TOKEN}" https://api.
 
 echo $(ls -a)
 
-cd /home/docker/actions-runner
+cd /home/runix/actions-runner
 
 ./config.sh --url https://github.com/${ORGANIZATION} --token ${REG_TOKEN}
 
