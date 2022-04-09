@@ -19,7 +19,7 @@ USER runix
 
 # ⚡ install python and the packages the your code depends on along with jq so we can parse json
 # ⚡ add additional packages as necessary
-RUN DEBIAN_FRONTEND=noninteractive sudo apt install -y --no-install-recommends build-essential curl wget sudo curl jq python3 python3-venv python3-dev python3-pip
+RUN DEBIAN_FRONTEND=noninteractive sudo apt install -y --no-install-recommends build-essential curl wget sudo iptables curl jq python3 python3-venv python3-dev python3-pip
 
 # ⚡ install github runner pacakge, cd into the user directory and
 # ⚡ download and unzip the github actions runner
@@ -83,9 +83,7 @@ RUN ts-node --version
 RUN cross --version
 
 # Check Docker
-USER root
-RUN dockerd
-USER runix
+RUN sudo dockerd
 
 COPY start.sh start.sh
 RUN sudo chmod +x start.sh
