@@ -83,12 +83,13 @@ RUN ts-node --version
 RUN cross --version
 
 # Check Docker
-RUN sudo systemctl enable docker
-RUN sudo systemctl start docker
-RUN sudo systemctl status docker
+RUN sudo service docker enable
+RUN sudo service docker start
+RUN sudo service docker status
 RUN sudo dockerd
 
 COPY start.sh start.sh
 RUN sudo chmod +x start.sh
 ENTRYPOINT ["./start.sh"]
 
+docker-compose down && cd ./github/runix &&  git pull && docker-compose build && docker tag runix_xornet-runner:latest geoxor/runix:latest && docker push geoxor/runix:latest && cd ../../ && docker-compose up -d
