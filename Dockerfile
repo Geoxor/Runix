@@ -53,7 +53,6 @@ RUN sudo npm i typescript -g
 RUN sudo npm i ts-node -g
 
 # Install Rust stuff
-ENV PATH="/root/.cargo/bin:${PATH}"
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 ENV PATH="/home/runix/.cargo/bin:${PATH}"
 
