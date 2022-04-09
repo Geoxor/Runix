@@ -41,16 +41,13 @@ Install [Docker](https://www.docker.com/products/docker-desktop)
 Edit the `docker-compose.yml` and add your organization & access token
 _make sure your access token has the correct permissions_
 
+Do this so dockers within the runners can execute
+
+```bash
+chmod 777 /var/run/docker.sock
+```
+
 # ☄ Usage
-
-### 📦 NPM
-
-I added a `package.json` file purely for the scripts
-so you can use `npm run` to start up the dockers
-
-- `npm run build` - to build the image
-- `npm run start` - to start 8 runners
-- `npm run stop` - to stop all runners
 
 ### 🐳 Docker Compose
 
