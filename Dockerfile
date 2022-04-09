@@ -82,7 +82,7 @@ RUN cross --version
 
 RUN sudo systemctl enable docker
 
-RUN usermod -aG docker runix
+RUN sudo usermod -aG docker runix
 
 COPY start.sh start.sh
 RUN sudo chmod +x start.sh
