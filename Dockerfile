@@ -2,7 +2,7 @@
 FROM node:17
 
 # 🔨 set the github runner version
-ARG RUNNER_VERSION="2.289.2"
+ARG RUNNER_VERSION="2.299.1"
 
 # ⚡ update the base packages 
 RUN apt update -y && apt upgrade -y
